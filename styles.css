@@ -13,39 +13,39 @@
 }
 
 /* ------------------------------------------------------------------
-   Primer-inspired design tokens
+   Primer-inspired design tokens (dark mode)
    ------------------------------------------------------------------ */
 :root {
   /* fg / bg */
-  --fgColor-default: #1f2328;
-  --fgColor-muted: #59636e;
-  --fgColor-subtle: #6e7781;
-  --fgColor-accent: #0969da;
+  --fgColor-default: #e6edf3;
+  --fgColor-muted: #9198a1;
+  --fgColor-subtle: #6e7681;
+  --fgColor-accent: #58a6ff;
   --fgColor-onEmphasis: #ffffff;
 
-  --bgColor-default: #ffffff;
-  --bgColor-muted: #f6f8fa;
-  --bgColor-inset: #eff2f5;
+  --bgColor-default: #0d1117;
+  --bgColor-muted: #161b22;
+  --bgColor-inset: #010409;
 
-  --borderColor-default: #d1d9e0;
-  --borderColor-muted: #d8dee4;
+  --borderColor-default: #30363d;
+  --borderColor-muted: #21262d;
 
   /* code */
-  --code-bg: #f6f8fa;
-  --code-border: #d1d9e0;
-  --tok-comment: #6e7781;
-  --tok-key: #cf222e;
-  --tok-str: #0a3069;
-  --tok-num: #0550ae;
-  --tok-heading: #0969da;
+  --code-bg: #161b22;
+  --code-border: #30363d;
+  --tok-comment: #8b949e;
+  --tok-key: #ff7b72;
+  --tok-str: #a5d6ff;
+  --tok-num: #79c0ff;
+  --tok-heading: #79c0ff;
 
-  /* the three section accents (Primer palette family) */
-  --accent-secure: #1a7f37;     /* open green */
-  --accent-secure-soft: #dafbe1;
-  --accent-scalable: #8250df;   /* done purple */
-  --accent-scalable-soft: #fbefff;
-  --accent-structured: #bf3989; /* sponsors pink */
-  --accent-structured-soft: #ffeff7;
+  /* the three section accents (Primer dark palette) */
+  --accent-secure: #3fb950;     /* open green */
+  --accent-secure-soft: #033a16;
+  --accent-scalable: #bc8cff;   /* done purple */
+  --accent-scalable-soft: #271052;
+  --accent-structured: #f778ba; /* sponsors pink */
+  --accent-structured-soft: #4d0f3b;
 
   /* layout */
   --slide-w: 1280px;
@@ -73,7 +73,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: var(--bgColor-muted);
+  background: var(--bgColor-inset);
   color: var(--fgColor-default);
   font-family: var(--font-sans);
   font-feature-settings: "ss01", "ss02";
@@ -111,7 +111,7 @@ button {
 }
 
 ::selection {
-  background: rgba(9, 105, 218, 0.18);
+  background: rgba(88, 166, 255, 0.28);
 }
 
 /* ------------------------------------------------------------------
@@ -215,7 +215,7 @@ button {
   height: 8px;
   border-radius: 50%;
   background: var(--fgColor-accent);
-  box-shadow: 0 0 0 4px rgba(9, 105, 218, 0.15);
+  box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.18);
 }
 
 .title {
@@ -227,7 +227,7 @@ button {
 }
 
 .title__accent {
-  background: linear-gradient(180deg, #0969da 0%, #0550ae 100%);
+  background: linear-gradient(180deg, #79c0ff 0%, #58a6ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -273,7 +273,7 @@ button {
   padding: clamp(20px, 2vw, 32px);
   border: 1px solid var(--borderColor-default);
   border-radius: 12px;
-  background: var(--bgColor-default);
+  background: var(--bgColor-muted);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -580,7 +580,7 @@ button {
 .tweet-card {
   position: relative;
   display: block;
-  background: var(--bgColor-default);
+  background: var(--bgColor-muted);
   border: 1px solid var(--borderColor-default);
   border-radius: 12px;
   padding: clamp(18px, 1.8vw, 24px) clamp(20px, 2vw, 28px);
@@ -595,7 +595,7 @@ button {
 .tweet-card:focus-visible {
   transform: translateY(-2px);
   border-color: var(--accent-secure);
-  box-shadow: 0 12px 28px -16px rgba(26, 127, 55, 0.35);
+  box-shadow: 0 12px 28px -16px rgba(63, 185, 80, 0.45);
   outline: none;
 }
 
@@ -689,6 +689,24 @@ button {
   max-width: 720px;
 }
 
+/* Quote variant — neutral blue accent, larger body text */
+.tweet-card--quote:hover,
+.tweet-card--quote:focus-visible {
+  border-color: var(--fgColor-accent);
+  box-shadow: 0 12px 28px -16px rgba(88, 166, 255, 0.45);
+}
+
+.tweet-card--quote .tweet-avatar {
+  background: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+}
+
+.tweet-card--quote .tweet-body {
+  font-size: clamp(1.25rem, 1.8vw, 1.625rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+}
+
 /* ------------------------------------------------------------------
    Video slide
    ------------------------------------------------------------------ */
@@ -703,7 +721,7 @@ button {
   padding: clamp(16px, 1.8vw, 22px);
   border: 1px solid var(--borderColor-default);
   border-radius: 12px;
-  background: var(--bgColor-default);
+  background: var(--bgColor-muted);
   text-decoration: none;
   color: inherit;
   transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
@@ -713,7 +731,7 @@ button {
 .video-card:focus-visible {
   transform: translateY(-2px);
   border-color: var(--accent-scalable);
-  box-shadow: 0 12px 28px -16px rgba(130, 80, 223, 0.45);
+  box-shadow: 0 12px 28px -16px rgba(188, 140, 255, 0.55);
   outline: none;
 }
 
@@ -857,7 +875,7 @@ button {
   align-items: center;
   gap: 16px;
   padding: 10px 20px;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.6));
+  background: linear-gradient(0deg, rgba(13, 17, 23, 0.92), rgba(13, 17, 23, 0.6));
   border-top: 1px solid var(--borderColor-default);
   font-size: 0.8rem;
   color: var(--fgColor-muted);
@@ -930,18 +948,10 @@ button {
   outline-offset: -8px;
 }
 
-/* When the active slide is the dark demo slide, recolor the chrome  */
+/* When the active slide is the demo slide, keep chrome tinted to match  */
 .deck:has(.slide--demo.is-active) ~ .chrome {
-  background: linear-gradient(0deg, rgba(13, 17, 23, 0.92), rgba(13, 17, 23, 0.6));
+  background: linear-gradient(0deg, rgba(1, 4, 9, 0.92), rgba(1, 4, 9, 0.6));
   border-top-color: #21262d;
-  color: #8b949e;
-}
-.deck:has(.slide--demo.is-active) ~ .chrome .chrome__brand,
-.deck:has(.slide--demo.is-active) ~ .chrome .chrome__counter {
-  color: #e6edf3;
-}
-.deck:has(.slide--demo.is-active) ~ .chrome .progress {
-  background: #21262d;
 }
 
 /* ------------------------------------------------------------------
