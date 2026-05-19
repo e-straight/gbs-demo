@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Idea → Prototype · The 3 S's of LLM Scaffolding</title>
+    <meta
+      name="description"
+      content="Using Scaffolding to go from Idea to Prototype: Maximizing Model Output and Minimizing AI Slop."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="deck" class="deck" aria-label="Slide deck">
+      <!-- 1. Title -->
+      <section class="slide slide--title" data-slide="1">
+        <div class="slide__inner">
+          <div class="eyebrow">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            <span>A talk on shipping with LLMs</span>
+          </div>
+          <h1 class="title">
+            Using Scaffolding to go from <span class="title__accent">Idea</span> to
+            <span class="title__accent">Prototype</span>
+          </h1>
+          <p class="subtitle">
+            Maximizing Model Output and Minimizing AI Slop
+          </p>
+          <div class="byline">
+            <span class="byline__rule" aria-hidden="true"></span>
+            <span class="byline__text">The 3 S's of LLM Scaffolding</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Framework intro -->
+      <section class="slide slide--intro" data-slide="2">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">The framework</p>
+            <h2>The LLM Scaffolding Framework</h2>
+            <p class="lede">Three principles that turn raw model output into something worth shipping.</p>
+          </header>
+          <div class="card-grid">
+            <article class="card card--structured">
+              <div class="card__index">1</div>
+              <h3>Structured</h3>
+              <p>Follow a disciplined build process from idea to production.</p>
+            </article>
+            <article class="card card--secure">
+              <div class="card__index">2</div>
+              <h3>Secure</h3>
+              <p>Build with security as a foundation, not an afterthought.</p>
+            </article>
+            <article class="card card--scalable">
+              <div class="card__index">3</div>
+              <h3>Scalable</h3>
+              <p>Build for performance and growth without overengineering.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Structured divider -->
+      <section class="slide slide--divider divider--structured" data-slide="3">
+        <div class="slide__inner">
+          <p class="divider__index">01</p>
+          <h2 class="divider__title">Structured</h2>
+          <p class="divider__tagline">A disciplined build process from idea to production.</p>
+        </div>
+      </section>
+
+      <!-- 4. Structured bullets 1/2 -->
+      <section class="slide slide--bullets bullets--structured" data-slide="4">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">01 · Structured</p>
+            <h2>Think before you type</h2>
+          </header>
+          <ul class="bullets">
+            <li>
+              <strong>Start with ideation.</strong>
+              Define the problem, the user, and the core value before a single line of code.
+            </li>
+            <li>
+              <strong>Break the product into shippable features.</strong>
+              Each one is a self-contained unit with a clear definition of done.
+            </li>
+            <li>
+              <strong>Write the spec before the code.</strong>
+              What does it do? What are the edge cases? What does success look like?
+            </li>
+            <li>
+              <strong>Review the spec first.</strong>
+              Catch ambiguity and wrong assumptions at the cheapest possible moment.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 5. Structured bullets 2/2 -->
+      <section class="slide slide--bullets bullets--structured" data-slide="5">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">01 · Structured</p>
+            <h2>Ship like you mean it</h2>
+          </header>
+          <ul class="bullets">
+            <li>
+              <strong>Write the code, then review it.</strong>
+              Check for correctness, security, and simplicity — in that order.
+            </li>
+            <li>
+              <strong>Write and run tests before merging.</strong>
+              Tests are how you sleep at night when you ship on Fridays.
+            </li>
+            <li>
+              <strong>Main is only reached through CI/CD.</strong>
+              Automated checks gate every deployment — no exceptions, including for you.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 6. Structured code example -->
+      <section class="slide slide--code code--structured" data-slide="6">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">01 · Structured · in practice</p>
+            <h2>A feature spec that fits on one screen</h2>
+          </header>
+          <figure class="code-block code-block--wide">
+            <figcaption><span class="code-block__dot"></span>specs/export-csv.md</figcaption>
+<pre><code><span class="tok-heading"># Feature: Export project to CSV</span>
+
+<span class="tok-heading">## Problem</span>
+Users need to hand project data to finance, who lives in spreadsheets.
+
+<span class="tok-heading">## User</span>
+Project owners on the Pro plan.
+
+<span class="tok-heading">## Success looks like</span>
+- A "Download CSV" button on the project page
+- One row per task, columns: id, title, status, owner, due_date
+- Streams server-side; works for projects with 50k+ tasks
+
+<span class="tok-heading">## Edge cases</span>
+- Empty project → header-only CSV, not a 404
+- Non-ASCII titles → UTF-8 with BOM
+- Background-deleted tasks → excluded silently
+
+<span class="tok-heading">## Non-goals</span>
+- XLSX export
+- Re-import
+- Scheduled / recurring exports</code></pre>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 7. Secure divider -->
+      <section class="slide slide--divider divider--secure" data-slide="7">
+        <div class="slide__inner">
+          <p class="divider__index">02</p>
+          <h2 class="divider__title">Secure</h2>
+          <p class="divider__tagline">Security as a foundation, not an afterthought.</p>
+        </div>
+      </section>
+
+      <!-- 8. Secure bullets 1/2 -->
+      <section class="slide slide--bullets bullets--secure" data-slide="8">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">02 · Secure</p>
+            <h2>Lock down the basics</h2>
+          </header>
+          <ul class="bullets">
+            <li>
+              <strong>Store secrets in <code>.env</code> + env vars.</strong>
+              Never hardcode API keys, database URLs, or credentials in source code.
+            </li>
+            <li>
+              <strong>Add <code>.env</code> to <code>.gitignore</code> before the first commit.</strong>
+              Treat any exposed secret as compromised — rotate immediately.
+            </li>
+            <li>
+              <strong>Never store plaintext passwords.</strong>
+              Use bcrypt or argon2, or delegate auth to Clerk, Supabase Auth, or Auth0.
+            </li>
+            <li>
+              <strong>Sanitize user input before it touches a prompt.</strong>
+              Prompt injection is the new XSS — treat untrusted text like untrusted text.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 9. Secure bullets 2/2 -->
+      <section class="slide slide--bullets bullets--secure" data-slide="9">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">02 · Secure</p>
+            <h2>Defense in depth</h2>
+          </header>
+          <ul class="bullets">
+            <li>
+              <strong>Return only what the frontend needs.</strong>
+              Never expose hashed passwords, internal IDs, or sensitive fields in API responses.
+            </li>
+            <li>
+              <strong>Validate inputs on the server.</strong>
+              Client-side validation is UX — it is not security.
+            </li>
+            <li>
+              <strong>Every route checks authn <em>and</em> authz.</strong>
+              "Are you logged in?" and "Are you allowed to do this?" are two different questions.
+            </li>
+            <li>
+              <strong>Implement row-level security.</strong>
+              Users can only ever see and mutate their own data — enforced at the database.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 10. Secure code example -->
+      <section class="slide slide--code code--secure" data-slide="10">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">02 · Secure · in practice</p>
+            <h2>Keep secrets out of the repo</h2>
+          </header>
+          <div class="code-grid">
+            <figure class="code-block">
+              <figcaption><span class="code-block__dot"></span>.env</figcaption>
+<pre><code><span class="tok-comment"># local only — never commit</span>
+<span class="tok-key">OPENAI_API_KEY</span>=<span class="tok-str">sk-************************</span>
+<span class="tok-key">DATABASE_URL</span>=<span class="tok-str">postgres://user:pass@localhost/app</span>
+<span class="tok-key">SESSION_SECRET</span>=<span class="tok-str">a-long-random-value</span></code></pre>
+            </figure>
+            <figure class="code-block">
+              <figcaption><span class="code-block__dot"></span>.gitignore</figcaption>
+<pre><code><span class="tok-comment"># secrets</span>
+.env
+.env.*
+!.env.example
+
+<span class="tok-comment"># build & deps</span>
+node_modules/
+dist/</code></pre>
+            </figure>
+          </div>
+          <p class="footnote">
+            Commit <code>.env.example</code> with placeholder values so teammates know what to set.
+          </p>
+        </div>
+      </section>
+
+      <!-- 11. Scalable divider -->
+      <section class="slide slide--divider divider--scalable" data-slide="11">
+        <div class="slide__inner">
+          <p class="divider__index">03</p>
+          <h2 class="divider__title">Scalable</h2>
+          <p class="divider__tagline">Performance and growth without overengineering.</p>
+        </div>
+      </section>
+
+      <!-- 12. Scalable bullets -->
+      <section class="slide slide--bullets bullets--scalable" data-slide="12">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">03 · Scalable</p>
+            <h2>Build for growth, not for ghosts</h2>
+          </header>
+          <ul class="bullets">
+            <li>
+              <strong>Design APIs to be extensible.</strong>
+              Clean versioning, consistent response shapes, clear separation of concerns.
+            </li>
+            <li>
+              <strong>Multi-tenant from day one.</strong>
+              The same infrastructure should serve many customers without duplication.
+            </li>
+            <li>
+              <strong>Optimize where it matters.</strong>
+              Cache repeated LLM calls, queue slow work, paginate large lists.
+            </li>
+            <li>
+              <strong>Don't write code you don't need.</strong>
+              Every line is a liability. Solve the problem in front of you — not hypothetical futures.
+            </li>
+            <li>
+              <strong>Prefer managed infrastructure.</strong>
+              Databases, queues, hosting — pay someone else to be on call early on.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 13. Scalable code example -->
+      <section class="slide slide--code code--scalable" data-slide="13">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">03 · Scalable · in practice</p>
+            <h2>Versioned routes, consistent envelopes</h2>
+          </header>
+          <div class="code-grid">
+            <figure class="code-block">
+              <figcaption><span class="code-block__dot"></span>routes</figcaption>
+<pre><code><span class="tok-comment">// v1 stays stable; new shapes ship under v2</span>
+<span class="tok-key">GET</span>  /api/v1/projects
+<span class="tok-key">POST</span> /api/v1/projects
+<span class="tok-key">GET</span>  /api/v1/projects/:id
+<span class="tok-key">GET</span>  /api/v2/projects   <span class="tok-comment">// breaking change lives here</span></code></pre>
+            </figure>
+            <figure class="code-block">
+              <figcaption><span class="code-block__dot"></span>response envelope</figcaption>
+<pre><code>{
+  <span class="tok-key">"data"</span>: { <span class="tok-key">"id"</span>: <span class="tok-str">"prj_42"</span>, <span class="tok-key">"name"</span>: <span class="tok-str">"Demo"</span> },
+  <span class="tok-key">"meta"</span>: {
+    <span class="tok-key">"page"</span>: <span class="tok-num">1</span>,
+    <span class="tok-key">"per_page"</span>: <span class="tok-num">25</span>,
+    <span class="tok-key">"total"</span>: <span class="tok-num">137</span>
+  },
+  <span class="tok-key">"error"</span>: <span class="tok-num">null</span>
+}</code></pre>
+            </figure>
+          </div>
+          <p class="footnote">
+            Every response, every endpoint — <code>{ data, meta, error }</code>. Clients never have to guess.
+          </p>
+        </div>
+      </section>
+
+      <!-- 14. Scalable video -->
+      <section class="slide slide--video video--scalable" data-slide="14">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">03 · Scalable · further watching</p>
+            <h2>Garry's List, audited</h2>
+            <p class="lede">A grounded take on what "scalable" actually means in practice.</p>
+          </header>
+          <a
+            class="video-card"
+            href="https://www.youtube.com/watch?v=mJ2GZRV63TE"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="video-card__thumb">
+              <img
+                src="https://i.ytimg.com/vi/mJ2GZRV63TE/maxresdefault.jpg"
+                alt="Thumbnail for 'Garry's List Audited' on YouTube"
+                loading="lazy"
+              />
+              <span class="video-card__play" aria-hidden="true">
+                <svg viewBox="0 0 68 48" width="68" height="48" focusable="false">
+                  <path
+                    d="M66.52 7.74a8 8 0 0 0-5.62-5.66C55.93.5 34 .5 34 .5s-21.93 0-26.9 1.58A8 8 0 0 0 1.48 7.74 83.5 83.5 0 0 0 0 24a83.5 83.5 0 0 0 1.48 16.26 8 8 0 0 0 5.62 5.66C12.07 47.5 34 47.5 34 47.5s21.93 0 26.9-1.58a8 8 0 0 0 5.62-5.66A83.5 83.5 0 0 0 68 24a83.5 83.5 0 0 0-1.48-16.26z"
+                    fill="#ff0000"
+                  />
+                  <path d="M27 34V14l18 10-18 10z" fill="#fff" />
+                </svg>
+              </span>
+            </div>
+            <div class="video-card__meta">
+              <span class="video-card__title">Garry's List Audited</span>
+              <span class="video-card__channel">ThePrimeagenHighlights · YouTube</span>
+              <span class="video-card__link">youtube.com/watch?v=mJ2GZRV63TE ↗</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- 15. Demo -->
+      <section class="slide slide--demo" data-slide="15">
+        <div class="slide__inner">
+          <p class="demo__prompt"><span class="demo__sigil">$</span> live-demo<span class="demo__cursor" aria-hidden="true"></span></p>
+          <h2 class="demo__title">Live Demo</h2>
+          <p class="demo__sub">Let's build something.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="chrome" aria-hidden="false">
+      <div class="chrome__left">
+        <span class="chrome__brand">Idea → Prototype</span>
+      </div>
+      <div class="chrome__center">
+        <div class="progress">
+          <div class="progress__bar" id="progress-bar"></div>
+        </div>
+      </div>
+      <div class="chrome__right">
+        <span class="chrome__counter">
+          <span id="slide-current">1</span> / <span id="slide-total">15</span>
+        </span>
+      </div>
+    </footer>
+
+    <button
+      class="edge-nav edge-nav--prev"
+      id="edge-prev"
+      aria-label="Previous slide"
+      type="button"
+    ></button>
+    <button
+      class="edge-nav edge-nav--next"
+      id="edge-next"
+      aria-label="Next slide"
+      type="button"
+    ></button>
+
+    <script src="slides.js" defer></script>
+  </body>
+</html>

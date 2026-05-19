@@ -1,0 +1,882 @@
+/* ------------------------------------------------------------------
+   Mona Sans (GitHub's brand variable font)
+   Loaded from jsdelivr — falls back gracefully to system fonts.
+   ------------------------------------------------------------------ */
+@font-face {
+  font-family: "Mona Sans";
+  src: url("https://cdn.jsdelivr.net/gh/github/mona-sans@main/fonts/webfonts/variable/MonaSansVF%5Bwdth,opsz,wght%5D.woff2")
+    format("woff2-variations");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ------------------------------------------------------------------
+   Primer-inspired design tokens
+   ------------------------------------------------------------------ */
+:root {
+  /* fg / bg */
+  --fgColor-default: #1f2328;
+  --fgColor-muted: #59636e;
+  --fgColor-subtle: #6e7781;
+  --fgColor-accent: #0969da;
+  --fgColor-onEmphasis: #ffffff;
+
+  --bgColor-default: #ffffff;
+  --bgColor-muted: #f6f8fa;
+  --bgColor-inset: #eff2f5;
+
+  --borderColor-default: #d1d9e0;
+  --borderColor-muted: #d8dee4;
+
+  /* code */
+  --code-bg: #f6f8fa;
+  --code-border: #d1d9e0;
+  --tok-comment: #6e7781;
+  --tok-key: #cf222e;
+  --tok-str: #0a3069;
+  --tok-num: #0550ae;
+  --tok-heading: #0969da;
+
+  /* the three section accents (Primer palette family) */
+  --accent-secure: #1a7f37;     /* open green */
+  --accent-secure-soft: #dafbe1;
+  --accent-scalable: #8250df;   /* done purple */
+  --accent-scalable-soft: #fbefff;
+  --accent-structured: #bf3989; /* sponsors pink */
+  --accent-structured-soft: #ffeff7;
+
+  /* layout */
+  --slide-w: 1280px;
+  --slide-h: 720px;
+  --slide-radius: 16px;
+
+  /* type */
+  --font-sans: "Mona Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+}
+
+/* ------------------------------------------------------------------
+   Reset & base
+   ------------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bgColor-muted);
+  color: var(--fgColor-default);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "ss02";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul {
+  margin: 0;
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+::selection {
+  background: rgba(9, 105, 218, 0.18);
+}
+
+/* ------------------------------------------------------------------
+   Deck container — every slide is a positioned, full-bleed layer
+   ------------------------------------------------------------------ */
+.deck {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 4vw, 64px);
+  background: var(--bgColor-default);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 360ms ease, transform 360ms ease, visibility 0s linear 360ms;
+}
+
+.slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 360ms ease, transform 360ms ease, visibility 0s linear 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: opacity 0s, transform 0s, visibility 0s;
+    transform: none;
+  }
+}
+
+.slide__inner {
+  width: min(100%, var(--slide-w));
+  max-height: var(--slide-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(16px, 2.4vw, 32px);
+}
+
+/* ------------------------------------------------------------------
+   Shared typographic elements
+   ------------------------------------------------------------------ */
+.slide__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kicker {
+  font-size: clamp(0.75rem, 0.9vw, 0.875rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fgColor-muted);
+}
+
+.slide h2 {
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: var(--fgColor-muted);
+  max-width: 56ch;
+}
+
+/* ------------------------------------------------------------------
+   Slide 1 — Title
+   ------------------------------------------------------------------ */
+.slide--title .slide__inner {
+  gap: clamp(20px, 2.6vw, 36px);
+  text-align: left;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--fgColor-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.eyebrow__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--fgColor-accent);
+  box-shadow: 0 0 0 4px rgba(9, 105, 218, 0.15);
+}
+
+.title {
+  font-size: clamp(2.5rem, 5.2vw, 4.75rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  max-width: 22ch;
+}
+
+.title__accent {
+  background: linear-gradient(180deg, #0969da 0%, #0550ae 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+  color: var(--fgColor-muted);
+  font-weight: 500;
+  max-width: 50ch;
+}
+
+.byline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+  color: var(--fgColor-subtle);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.byline__rule {
+  width: 40px;
+  height: 2px;
+  background: var(--fgColor-subtle);
+  border-radius: 2px;
+}
+
+/* ------------------------------------------------------------------
+   Slide 2 — Intro card grid
+   ------------------------------------------------------------------ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.8vw, 24px);
+}
+
+.card {
+  position: relative;
+  padding: clamp(20px, 2vw, 32px);
+  border: 1px solid var(--borderColor-default);
+  border-radius: 12px;
+  background: var(--bgColor-default);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: currentColor;
+  opacity: 0.85;
+}
+
+.card--secure {
+  color: var(--accent-secure);
+}
+.card--scalable {
+  color: var(--accent-scalable);
+}
+.card--structured {
+  color: var(--accent-structured);
+}
+
+.card h3 {
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--fgColor-default);
+}
+
+.card p {
+  color: var(--fgColor-muted);
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.5;
+}
+
+.card__index {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: currentColor;
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  padding: 2px 10px;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.slide.is-active .card {
+  animation: card-rise 600ms ease both;
+}
+.slide.is-active .card:nth-child(2) {
+  animation-delay: 90ms;
+}
+.slide.is-active .card:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-active .card {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Section dividers
+   ------------------------------------------------------------------ */
+.slide--divider .slide__inner {
+  text-align: left;
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+.divider__index {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--fgColor-onEmphasis);
+  opacity: 0.7;
+}
+
+.divider__title {
+  font-size: clamp(4rem, 9vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--fgColor-onEmphasis);
+}
+
+.divider__tagline {
+  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+  color: var(--fgColor-onEmphasis);
+  opacity: 0.88;
+  max-width: 48ch;
+  font-weight: 500;
+}
+
+.divider--secure {
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 60%),
+    linear-gradient(135deg, #1a7f37 0%, #0f5323 100%);
+}
+.divider--scalable {
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(255, 255, 255, 0.14) 0%, transparent 60%),
+    linear-gradient(135deg, #8250df 0%, #4a1f8f 100%);
+}
+.divider--structured {
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(255, 255, 255, 0.14) 0%, transparent 60%),
+    linear-gradient(135deg, #bf3989 0%, #7d1e58 100%);
+}
+
+/* ------------------------------------------------------------------
+   Bullet slides
+   ------------------------------------------------------------------ */
+.bullets {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: clamp(12px, 1.4vw, 18px);
+}
+
+.bullets li {
+  position: relative;
+  padding: clamp(14px, 1.4vw, 18px) clamp(16px, 1.8vw, 22px);
+  padding-left: clamp(22px, 2.4vw, 30px);
+  background: var(--bgColor-muted);
+  border: 1px solid var(--borderColor-default);
+  border-radius: 10px;
+  font-size: clamp(0.95rem, 1.15vw, 1.075rem);
+  line-height: 1.5;
+  color: var(--fgColor-default);
+}
+
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+  background: currentColor;
+}
+
+.bullets li strong {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 700;
+  color: var(--fgColor-default);
+}
+
+.bullets li code {
+  background: var(--bgColor-default);
+  border: 1px solid var(--borderColor-default);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-size: 0.9em;
+}
+
+.bullets--secure li {
+  color: var(--accent-secure);
+}
+.bullets--scalable li {
+  color: var(--accent-scalable);
+}
+.bullets--structured li {
+  color: var(--accent-structured);
+}
+
+.bullets--secure .kicker,
+.bullets--scalable .kicker,
+.bullets--structured .kicker {
+  color: currentColor;
+}
+.bullets--secure .slide__header {
+  color: var(--accent-secure);
+}
+.bullets--scalable .slide__header {
+  color: var(--accent-scalable);
+}
+.bullets--structured .slide__header {
+  color: var(--accent-structured);
+}
+.bullets--secure .slide__header h2,
+.bullets--scalable .slide__header h2,
+.bullets--structured .slide__header h2 {
+  color: var(--fgColor-default);
+}
+
+/* ------------------------------------------------------------------
+   Code slides
+   ------------------------------------------------------------------ */
+.code-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 20px);
+}
+
+.code-block {
+  margin: 0;
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-block--wide {
+  grid-column: 1 / -1;
+}
+
+.code-block figcaption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bgColor-default);
+  border-bottom: 1px solid var(--code-border);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--fgColor-muted);
+}
+
+.code-block__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.code--secure .code-block figcaption {
+  color: var(--accent-secure);
+}
+.code--scalable .code-block figcaption {
+  color: var(--accent-scalable);
+}
+.code--structured .code-block figcaption {
+  color: var(--accent-structured);
+}
+
+.code-block pre {
+  margin: 0;
+  padding: clamp(14px, 1.4vw, 18px);
+  font-size: clamp(0.85rem, 1.05vw, 0.95rem);
+  line-height: 1.55;
+  overflow: auto;
+  flex: 1;
+}
+
+.code-block code {
+  white-space: pre;
+}
+
+.tok-comment {
+  color: var(--tok-comment);
+  font-style: italic;
+}
+.tok-key {
+  color: var(--tok-key);
+}
+.tok-str {
+  color: var(--tok-str);
+}
+.tok-num {
+  color: var(--tok-num);
+}
+.tok-heading {
+  color: var(--tok-heading);
+  font-weight: 600;
+}
+
+.footnote {
+  color: var(--fgColor-muted);
+  font-size: 0.95rem;
+}
+.footnote code {
+  background: var(--bgColor-muted);
+  border: 1px solid var(--borderColor-default);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-size: 0.9em;
+}
+
+/* ------------------------------------------------------------------
+   Video slide
+   ------------------------------------------------------------------ */
+.slide--video .slide__inner {
+  gap: clamp(16px, 2vw, 28px);
+}
+
+.video-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+  padding: clamp(16px, 1.8vw, 22px);
+  border: 1px solid var(--borderColor-default);
+  border-radius: 12px;
+  background: var(--bgColor-default);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.video-card:hover,
+.video-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--accent-scalable);
+  box-shadow: 0 12px 28px -16px rgba(130, 80, 223, 0.45);
+  outline: none;
+}
+
+.video-card__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--borderColor-default);
+}
+
+.video-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-card__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  transition: transform 200ms ease, opacity 200ms ease;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+  opacity: 0.92;
+}
+
+.video-card:hover .video-card__play,
+.video-card:focus-visible .video-card__play {
+  transform: scale(1.06);
+  opacity: 1;
+}
+
+.video-card__meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.video-card__title {
+  font-size: clamp(1.4rem, 2vw, 1.875rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--fgColor-default);
+}
+
+.video-card__channel {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  color: var(--fgColor-muted);
+  font-weight: 500;
+}
+
+.video-card__link {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--accent-scalable);
+  word-break: break-all;
+}
+
+/* ------------------------------------------------------------------
+   Demo slide
+   ------------------------------------------------------------------ */
+.slide--demo {
+  background:
+    radial-gradient(60% 50% at 50% 40%, rgba(9, 105, 218, 0.18) 0%, transparent 70%),
+    linear-gradient(180deg, #0d1117 0%, #010409 100%);
+  color: #e6edf3;
+}
+
+.slide--demo .slide__inner {
+  text-align: center;
+  gap: clamp(12px, 1.6vw, 24px);
+  align-items: center;
+}
+
+.demo__prompt {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  color: #7ee787;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.demo__sigil {
+  color: #58a6ff;
+}
+
+.demo__cursor {
+  display: inline-block;
+  width: 0.6ch;
+  height: 1em;
+  background: #7ee787;
+  margin-left: 6px;
+  vertical-align: -2px;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo__cursor {
+    animation: none;
+  }
+}
+
+.demo__title {
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #f0f6fc;
+}
+
+.demo__sub {
+  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+  color: #8b949e;
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------------
+   Chrome (footer) + edge nav
+   ------------------------------------------------------------------ */
+.chrome {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.6));
+  border-top: 1px solid var(--borderColor-default);
+  font-size: 0.8rem;
+  color: var(--fgColor-muted);
+  z-index: 20;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.chrome__brand {
+  font-weight: 600;
+  color: var(--fgColor-default);
+  letter-spacing: 0.02em;
+}
+
+.chrome__center {
+  display: flex;
+  justify-content: center;
+}
+
+.progress {
+  width: min(360px, 100%);
+  height: 4px;
+  background: var(--bgColor-inset);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress__bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0969da, #54aeff);
+  transition: width 320ms ease;
+}
+
+.chrome__right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chrome__counter {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--fgColor-default);
+  font-weight: 600;
+}
+
+/* invisible edge-click hot zones */
+.edge-nav {
+  position: fixed;
+  top: 0;
+  bottom: 56px;
+  width: 18%;
+  z-index: 15;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.edge-nav--prev {
+  left: 0;
+  cursor: w-resize;
+}
+.edge-nav--next {
+  right: 0;
+  cursor: e-resize;
+}
+
+.edge-nav:focus-visible {
+  outline: 2px dashed var(--fgColor-accent);
+  outline-offset: -8px;
+}
+
+/* When the active slide is the dark demo slide, recolor the chrome  */
+.deck:has(.slide--demo.is-active) ~ .chrome {
+  background: linear-gradient(0deg, rgba(13, 17, 23, 0.92), rgba(13, 17, 23, 0.6));
+  border-top-color: #21262d;
+  color: #8b949e;
+}
+.deck:has(.slide--demo.is-active) ~ .chrome .chrome__brand,
+.deck:has(.slide--demo.is-active) ~ .chrome .chrome__counter {
+  color: #e6edf3;
+}
+.deck:has(.slide--demo.is-active) ~ .chrome .progress {
+  background: #21262d;
+}
+
+/* ------------------------------------------------------------------
+   Smaller viewports
+   ------------------------------------------------------------------ */
+@media (max-width: 720px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+  .code-grid {
+    grid-template-columns: 1fr;
+  }
+  .video-card {
+    grid-template-columns: 1fr;
+  }
+  .slide {
+    padding: 20px;
+  }
+  .chrome {
+    grid-template-columns: 1fr auto;
+  }
+  .chrome__center {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Print → one slide per page for PDF export
+   ------------------------------------------------------------------ */
+@media print {
+  html,
+  body {
+    overflow: visible;
+    background: #fff;
+  }
+  .chrome,
+  .edge-nav {
+    display: none;
+  }
+  .deck {
+    overflow: visible;
+  }
+  .slide {
+    position: relative;
+    inset: auto;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    page-break-after: always;
+    break-after: page;
+    min-height: 100vh;
+  }
+}
