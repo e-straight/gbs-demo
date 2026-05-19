@@ -827,6 +827,111 @@ button {
   box-shadow: 0 12px 28px -16px rgba(247, 120, 186, 0.45);
 }
 
+/* Caution slide — auto-approve warning */
+.caution-slide .slide__inner {
+  align-items: stretch;
+  text-align: left;
+  width: min(100%, var(--slide-w));
+  gap: clamp(14px, 1.6vw, 22px);
+}
+
+.code-block--terminal {
+  background: #010409;
+  border-color: #21262d;
+}
+
+.code-block--terminal figcaption {
+  background: #0d1117;
+  border-bottom-color: #21262d;
+  color: var(--accent-secure);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.code-block--terminal pre {
+  color: #e6edf3;
+  font-size: clamp(0.95rem, 1.25vw, 1.125rem);
+  line-height: 1.7;
+}
+
+.tok-prompt {
+  color: #58a6ff;
+  font-weight: 600;
+}
+
+.tok-cmd {
+  color: #e6edf3;
+  font-weight: 600;
+}
+
+.tok-flag {
+  color: #ff7b72;
+  font-weight: 500;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 14px);
+}
+
+.checklist li {
+  position: relative;
+  padding: clamp(12px, 1.2vw, 16px) clamp(14px, 1.6vw, 20px) clamp(12px, 1.2vw, 16px) clamp(36px, 3.4vw, 44px);
+  background: var(--bgColor-muted);
+  border: 1px solid var(--borderColor-default);
+  border-radius: 10px;
+  font-size: clamp(0.88rem, 1.05vw, 0.98rem);
+  line-height: 1.45;
+  color: var(--fgColor-default);
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: clamp(12px, 1.4vw, 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 30%, var(--accent-secure) 31% 100%);
+  box-shadow: 0 0 0 2px rgba(63, 185, 80, 0.18);
+}
+
+.checklist li::after {
+  content: "";
+  position: absolute;
+  left: calc(clamp(12px, 1.4vw, 16px) + 4px);
+  top: 50%;
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid #0d1117;
+  border-bottom: 2px solid #0d1117;
+  transform: translateY(-70%) rotate(-45deg);
+}
+
+.checklist li strong {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 700;
+  color: var(--fgColor-default);
+}
+
+.checklist li code {
+  background: var(--bgColor-default);
+  border: 1px solid var(--borderColor-default);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-size: 0.9em;
+}
+
 /* Quote variant — neutral blue accent, larger body text */
 .tweet-card--quote:hover,
 .tweet-card--quote:focus-visible {
@@ -1109,6 +1214,9 @@ button {
     grid-template-columns: 1fr;
   }
   .tools-grid {
+    grid-template-columns: 1fr;
+  }
+  .checklist {
     grid-template-columns: 1fr;
   }
   .slide {

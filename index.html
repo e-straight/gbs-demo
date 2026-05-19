@@ -443,8 +443,45 @@ dist/</code></pre>
         </div>
       </section>
 
-      <!-- 14. Scalable divider -->
-      <section class="slide slide--divider divider--scalable" data-slide="14">
+      <!-- 14. Secure caution — auto-approve flags -->
+      <section class="slide slide--caution caution-slide" data-slide="14">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">02 · Secure · a word of caution</p>
+            <h2>Auto-approve isn't a free pass</h2>
+            <p class="lede">
+              These flags hand the keys to the model. Use them in a room you can afford to blow up.
+            </p>
+          </header>
+          <figure class="code-block code-block--wide code-block--terminal">
+            <figcaption><span class="code-block__dot"></span>danger zone</figcaption>
+<pre><code><span class="tok-prompt">$</span> <span class="tok-cmd">claude</span> <span class="tok-flag">--dangerously-skip-permissions</span>
+<span class="tok-prompt">$</span> <span class="tok-cmd">codex</span>  <span class="tok-flag">--yolo</span>
+<span class="tok-prompt">$</span> <span class="tok-cmd">copilot</span> <span class="tok-flag">--autopilot</span></code></pre>
+          </figure>
+          <ul class="checklist">
+            <li>
+              <strong>Run it sandboxed.</strong>
+              Disposable container, ephemeral VM, branch worktree — anything you can throw away when it goes sideways.
+            </li>
+            <li>
+              <strong>Keep production credentials out of scope.</strong>
+              No prod database URL, no live API keys, no long-lived tokens in the environment.
+            </li>
+            <li>
+              <strong>Don't let it install random packages.</strong>
+              Pin dependencies, audit lockfiles, and prefer an isolated package cache.
+            </li>
+            <li>
+              <strong>Don't let it drop tables.</strong>
+              No <code>DROP</code>, no <code>TRUNCATE</code>, no <code>rm -rf</code> — keep destructive commands behind a human checkpoint.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 15. Scalable divider -->
+      <section class="slide slide--divider divider--scalable" data-slide="15">
         <div class="slide__inner">
           <p class="divider__index">03</p>
           <h2 class="divider__title">Scalable</h2>
@@ -452,8 +489,8 @@ dist/</code></pre>
         </div>
       </section>
 
-      <!-- 15. Scalable bullets -->
-      <section class="slide slide--bullets bullets--scalable" data-slide="15">
+      <!-- 16. Scalable bullets -->
+      <section class="slide slide--bullets bullets--scalable" data-slide="16">
         <div class="slide__inner">
           <header class="slide__header">
             <p class="kicker">03 · Scalable</p>
@@ -484,8 +521,8 @@ dist/</code></pre>
         </div>
       </section>
 
-      <!-- 16. Scalable code example -->
-      <section class="slide slide--code code--scalable" data-slide="16">
+      <!-- 17. Scalable code example -->
+      <section class="slide slide--code code--scalable" data-slide="17">
         <div class="slide__inner">
           <header class="slide__header">
             <p class="kicker">03 · Scalable · in practice</p>
@@ -519,8 +556,8 @@ dist/</code></pre>
         </div>
       </section>
 
-      <!-- 17. Scalable video -->
-      <section class="slide slide--video video--scalable" data-slide="17">
+      <!-- 18. Scalable video -->
+      <section class="slide slide--video video--scalable" data-slide="18">
         <div class="slide__inner">
           <header class="slide__header">
             <p class="kicker">03 · Scalable · further watching</p>
@@ -558,8 +595,8 @@ dist/</code></pre>
         </div>
       </section>
 
-      <!-- 18. Demo -->
-      <section class="slide slide--demo" data-slide="18">
+      <!-- 19. Demo -->
+      <section class="slide slide--demo" data-slide="19">
         <div class="slide__inner">
           <p class="demo__prompt"><span class="demo__sigil">$</span> live-demo<span class="demo__cursor" aria-hidden="true"></span></p>
           <h2 class="demo__title">Live Demo</h2>
@@ -579,7 +616,7 @@ dist/</code></pre>
       </div>
       <div class="chrome__right">
         <span class="chrome__counter">
-          <span id="slide-current">1</span> / <span id="slide-total">18</span>
+          <span id="slide-current">1</span> / <span id="slide-total">19</span>
         </span>
       </div>
     </footer>
