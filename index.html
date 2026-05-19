@@ -492,34 +492,49 @@ dist/</code></pre>
           <header class="slide__header">
             <p class="kicker">02 · Secure · a word of caution</p>
             <h2>Auto-approve isn't a free pass</h2>
-            <p class="lede">
-              These flags hand the keys to the model. Use them in a room you can afford to blow up.
-            </p>
           </header>
-          <figure class="code-block code-block--wide code-block--terminal">
-            <figcaption><span class="code-block__dot"></span>danger zone</figcaption>
+          <div class="caution-layout">
+            <a
+              href="https://x.com/vxunderground/status/2056571455001797000/photo/1"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="caution-meme"
+              aria-label="View original post on X"
+            >
+              <img
+                src="assets/yolo-meme.jpg"
+                alt="vx-underground meme on the consequences of YOLO mode"
+                loading="eager"
+              />
+              <span class="caution-meme__credit">@vxunderground</span>
+            </a>
+            <div class="caution-detail">
+              <figure class="code-block code-block--wide code-block--terminal">
+                <figcaption><span class="code-block__dot"></span>danger zone</figcaption>
 <pre><code><span class="tok-prompt">$</span> <span class="tok-cmd">claude</span> <span class="tok-flag">--dangerously-skip-permissions</span>
 <span class="tok-prompt">$</span> <span class="tok-cmd">codex</span>  <span class="tok-flag">--yolo</span>
 <span class="tok-prompt">$</span> <span class="tok-cmd">copilot</span> <span class="tok-flag">--autopilot</span></code></pre>
-          </figure>
-          <ul class="checklist">
-            <li>
-              <strong>Run it sandboxed.</strong>
-              Disposable container, ephemeral VM, branch worktree — anything you can throw away when it goes sideways.
-            </li>
-            <li>
-              <strong>Keep production credentials out of scope.</strong>
-              No prod database URL, no live API keys, no long-lived tokens in the environment.
-            </li>
-            <li>
-              <strong>Don't let it install random packages.</strong>
-              Pin dependencies, audit lockfiles, and prefer an isolated package cache.
-            </li>
-            <li>
-              <strong>Don't let it drop tables.</strong>
-              No <code>DROP</code>, no <code>TRUNCATE</code>, no <code>rm -rf</code> — keep destructive commands behind a human checkpoint.
-            </li>
-          </ul>
+              </figure>
+              <ul class="checklist checklist--stack">
+                <li>
+                  <strong>Run it sandboxed.</strong>
+                  Disposable container, ephemeral VM, branch worktree.
+                </li>
+                <li>
+                  <strong>Keep production credentials out of scope.</strong>
+                  No prod database URL, no live API keys.
+                </li>
+                <li>
+                  <strong>Don't install random packages.</strong>
+                  Pin dependencies and audit lockfiles.
+                </li>
+                <li>
+                  <strong>Don't drop tables.</strong>
+                  No <code>DROP</code>, no <code>TRUNCATE</code>, no <code>rm -rf</code>.
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
