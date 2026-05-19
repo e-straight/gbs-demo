@@ -803,6 +803,30 @@ button {
   color: var(--fgColor-subtle);
 }
 
+/* Tools slide — 2-column link-card layout with structured-pink accent */
+.tools-slide .slide__inner {
+  align-items: stretch;
+  text-align: left;
+  width: min(100%, var(--slide-w));
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 1.8vw, 24px);
+  align-items: stretch;
+}
+
+.tools--structured .link-card__source {
+  color: var(--accent-structured);
+}
+
+.tools--structured .link-card:hover,
+.tools--structured .link-card:focus-visible {
+  border-color: var(--accent-structured);
+  box-shadow: 0 12px 28px -16px rgba(247, 120, 186, 0.45);
+}
+
 /* Quote variant — neutral blue accent, larger body text */
 .tweet-card--quote:hover,
 .tweet-card--quote:focus-visible {
@@ -1082,6 +1106,9 @@ button {
     grid-template-columns: 1fr;
   }
   .threat-grid {
+    grid-template-columns: 1fr;
+  }
+  .tools-grid {
     grid-template-columns: 1fr;
   }
   .slide {
