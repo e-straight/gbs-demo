@@ -298,45 +298,92 @@ dist/</code></pre>
         </div>
       </section>
 
-      <!-- 12. Secure tweet card -->
-      <section class="slide slide--tweet tweet-slide" data-slide="12">
+      <!-- 12. Secure tweet card + link previews -->
+      <section class="slide slide--tweet tweet-slide threat-slide" data-slide="12">
         <div class="slide__inner">
           <header class="slide__header">
             <p class="kicker">02 · Secure · seen in the wild</p>
             <h2>The threats are real — and ongoing</h2>
-            <p class="lede">A reminder that "secure by default" isn't paranoia.</p>
           </header>
-          <a
-            href="https://x.com/MsftSecIntel/status/2056639452999471210?s=20"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="tweet-card"
-          >
-            <svg class="tweet-x-logo" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-            <div class="tweet-header">
-              <div class="tweet-avatar" aria-hidden="true">🛡️</div>
-              <div class="tweet-author">
-                <span class="tweet-name">
-                  Microsoft Threat Intelligence
-                  <svg class="verified" viewBox="0 0 22 22" aria-hidden="true">
-                    <path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.855-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.69-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.636.433 1.221.878 1.69.47.446 1.055.752 1.69.883.635.13 1.294.083 1.902-.14.272.587.702 1.086 1.24 1.44.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.222 1.26.268 1.89.138.636-.13 1.22-.436 1.69-.882.445-.47.749-1.055.878-1.69.13-.634.08-1.29-.14-1.898.585-.27 1.084-.7 1.438-1.24.354-.543.552-1.174.57-1.82zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z" />
-                  </svg>
-                </span>
-                <span class="tweet-handle">@MsftSecIntel · May 19, 2026</span>
+          <div class="threat-grid">
+            <a
+              href="https://x.com/MsftSecIntel/status/2056639452999471210?s=20"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tweet-card threat-card"
+            >
+              <svg class="tweet-x-logo" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+              <div class="tweet-header">
+                <div class="tweet-avatar" aria-hidden="true">🛡️</div>
+                <div class="tweet-author">
+                  <span class="tweet-name">
+                    Microsoft Threat Intelligence
+                    <svg class="verified" viewBox="0 0 22 22" aria-hidden="true">
+                      <path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.855-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.69-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.636.433 1.221.878 1.69.47.446 1.055.752 1.69.883.635.13 1.294.083 1.902-.14.272.587.702 1.086 1.24 1.44.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.222 1.26.268 1.89.138.636-.13 1.22-.436 1.69-.882.445-.47.749-1.055.878-1.69.13-.634.08-1.29-.14-1.898.585-.27 1.084-.7 1.438-1.24.354-.543.552-1.174.57-1.82zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z" />
+                    </svg>
+                  </span>
+                  <span class="tweet-handle">@MsftSecIntel · May 19, 2026</span>
+                </div>
               </div>
-            </div>
-            <p class="tweet-body">
-              Microsoft is investigating a new, emerging Mini Shai-Hulud npm supply chain attack targeting antv packages.
-            </p>
-            <div class="tweet-stats">
-              <span class="tweet-stat">💬 Reply</span>
-              <span class="tweet-stat">🔁 Repost</span>
-              <span class="tweet-stat">❤️ Like</span>
-              <span class="tweet-stat">↗ View on X</span>
-            </div>
-          </a>
+              <p class="tweet-body">
+                Microsoft is investigating a new, emerging Mini Shai-Hulud npm supply chain attack targeting antv packages.
+              </p>
+              <div class="tweet-stats">
+                <span class="tweet-stat">💬 Reply</span>
+                <span class="tweet-stat">🔁 Repost</span>
+                <span class="tweet-stat">❤️ Like</span>
+                <span class="tweet-stat">↗ View on X</span>
+              </div>
+            </a>
+
+            <a
+              href="https://snyk.io/blog/cline-supply-chain-attack-prompt-injection-github-actions/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="link-card"
+            >
+              <div
+                class="link-card__image"
+                style="background-image: url('https://res.cloudinary.com/snyk/image/upload/v1646599410/wordpress-sync/blog-feature-security-alert-purple.jpg');"
+                aria-hidden="true"
+              ></div>
+              <div class="link-card__body">
+                <p class="link-card__source">Snyk · Blog</p>
+                <h3 class="link-card__title">
+                  How "Clinejection" turned an AI bot into a supply-chain attack
+                </h3>
+                <p class="link-card__desc">
+                  A prompt injection in a GitHub issue title gave attackers code execution inside Cline's CI/CD pipeline — cache poisoning, stolen npm credentials, and an unauthorized package publish affecting 5M users.
+                </p>
+                <span class="link-card__url">snyk.io ↗</span>
+              </div>
+            </a>
+
+            <a
+              href="https://vercel.com/kb/bulletin/vercel-april-2026-security-incident"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="link-card"
+            >
+              <div
+                class="link-card__image"
+                style="background-image: url('https://images.ctfassets.net/hjgychtc108g/7DjSnSWeGLxU1cL5MmavJY/f16cf2f7c52eea9be84fa25d7fb6faac/image.png');"
+                aria-hidden="true"
+              ></div>
+              <div class="link-card__body">
+                <p class="link-card__source">Vercel · Knowledge base</p>
+                <h3 class="link-card__title">
+                  Vercel April 2026 security incident
+                </h3>
+                <p class="link-card__desc">
+                  Vercel identified a security incident involving unauthorized access to certain internal systems — a reminder that even the platforms you trust get breached.
+                </p>
+                <span class="link-card__url">vercel.com ↗</span>
+              </div>
+            </a>
+          </div>
         </div>
       </section>
 
