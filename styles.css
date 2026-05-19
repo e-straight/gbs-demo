@@ -984,19 +984,9 @@ button {
   overflow: hidden;
   border: 1px solid var(--borderColor-default);
   background: #000;
-  text-decoration: none;
   color: inherit;
   max-width: min(960px, 100%);
   max-height: clamp(420px, 78vh, 720px);
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-}
-
-.meme-card:hover,
-.meme-card:focus-visible {
-  transform: translateY(-2px);
-  border-color: var(--accent-secure);
-  box-shadow: 0 16px 36px -18px rgba(63, 185, 80, 0.45);
-  outline: none;
 }
 
 .meme-card img {
