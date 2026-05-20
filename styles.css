@@ -318,70 +318,38 @@ button {
 
 /* About-grid mobile collapse lives in the main mobile block below. */
 
-.slide--about .slide__inner {
-  position: relative;
-}
-
-.about-qr {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 16px 12px 12px;
-  background: var(--bgColor-muted);
-  border: 1px solid var(--borderColor-default);
-  border-radius: 14px;
-  text-decoration: none;
-  color: var(--fgColor-default);
-  box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.7);
-  transition: transform 200ms ease, border-color 200ms ease;
-}
-
-.about-qr:hover,
-.about-qr:focus-visible {
-  transform: translateY(-2px);
-  border-color: var(--fgColor-accent);
-  outline: none;
-}
-
-.about-qr img {
-  width: clamp(96px, 9vw, 132px);
-  height: clamp(96px, 9vw, 132px);
-  display: block;
-  background: #ffffff;
-  padding: 6px;
-  border-radius: 8px;
-}
-
-.about-qr__caption {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  line-height: 1.2;
-}
-
-.about-qr__label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--fgColor-accent);
-}
-
-.about-qr__url {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--fgColor-muted);
-}
-
 /* ------------------------------------------------------------------
    Slide 1 — Title
    ------------------------------------------------------------------ */
 .slide--title .slide__inner {
+  position: relative;
   gap: clamp(20px, 2.6vw, 36px);
   text-align: left;
+}
+
+.title-qr {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: block;
+  padding: 8px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.7);
+  transition: transform 200ms ease;
+  line-height: 0;
+}
+
+.title-qr:hover,
+.title-qr:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.title-qr img {
+  width: clamp(96px, 9vw, 132px);
+  height: clamp(96px, 9vw, 132px);
+  display: block;
 }
 
 .eyebrow {
@@ -419,7 +387,10 @@ button {
 }
 
 .title__highlight {
-  color: #ffffff;
+  background: linear-gradient(135deg, #f778ba 0%, #bc8cff 50%, #58a6ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .subtitle {
@@ -1524,12 +1495,12 @@ button {
     height: clamp(56px, 14vw, 72px);
   }
 
-  .about-qr {
+  .title-qr {
     position: static;
     margin: 12px auto 0;
     align-self: center;
   }
-  .about-qr img {
+  .title-qr img {
     width: 96px;
     height: 96px;
   }
