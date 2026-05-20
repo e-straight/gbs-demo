@@ -419,10 +419,7 @@ button {
 }
 
 .title__highlight {
-  background: linear-gradient(180deg, #d2a8ff 0%, #bc8cff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #ffffff;
 }
 
 .subtitle {
