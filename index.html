@@ -162,8 +162,44 @@
         </div>
       </section>
 
-      <!-- 6. Structured bullets 1/2 -->
+      <!-- 6. GitHub primer -->
       <section class="slide slide--bullets bullets--structured" data-slide="6">
+        <div class="slide__inner">
+          <header class="slide__header">
+            <p class="kicker">01 · Structured · ground floor</p>
+            <h2>GitHub in 60 seconds</h2>
+            <p class="lede">The vocabulary the rest of this talk assumes.</p>
+          </header>
+          <ul class="bullets">
+            <li>
+              <strong>Repository.</strong>
+              A project's code plus its full history. One per app.
+            </li>
+            <li>
+              <strong>Branch &amp; main.</strong>
+              Isolated lines of work. <code>main</code> is the canonical one — it's what ships.
+            </li>
+            <li>
+              <strong>Commit.</strong>
+              A versioned snapshot. Small, labeled, reversible.
+            </li>
+            <li>
+              <strong>Pull Request (PR).</strong>
+              A proposal to merge a branch into main. Reviewed, discussed, and gated before it lands.
+            </li>
+            <li>
+              <strong>CI/CD.</strong>
+              Automated checks (tests, lint, security) and deploys that run on every PR and every merge to main.
+            </li>
+          </ul>
+          <p class="footnote">
+            Every "spec → review → test → ship" step in this talk is a GitHub primitive. Scaffolding lives here.
+          </p>
+        </div>
+      </section>
+
+      <!-- 7. Structured bullets 1/2 -->
+      <section class="slide slide--bullets bullets--structured" data-slide="7">
         <div class="slide__inner">
           <header class="slide__header">
             <p class="kicker">01 · Structured</p>
@@ -190,8 +226,8 @@
         </div>
       </section>
 
-      <!-- 7. Structured bullets 2/2 -->
-      <section class="slide slide--bullets bullets--structured" data-slide="7">
+      <!-- 8. Structured bullets 2/2 -->
+      <section class="slide slide--bullets bullets--structured" data-slide="8">
         <div class="slide__inner">
           <header class="slide__header">
             <p class="kicker">01 · Structured</p>
@@ -211,41 +247,6 @@
               Automated checks gate every deployment — no exceptions, including for you.
             </li>
           </ul>
-        </div>
-      </section>
-
-      <!-- 8. Structured code example -->
-      <section class="slide slide--code code--structured" data-slide="8">
-        <div class="slide__inner">
-          <header class="slide__header">
-            <p class="kicker">01 · Structured · in practice</p>
-            <h2>A feature spec that fits on one screen</h2>
-          </header>
-          <figure class="code-block code-block--wide">
-            <figcaption><span class="code-block__dot"></span>specs/export-csv.md</figcaption>
-<pre><code><span class="tok-heading"># Feature: Export project to CSV</span>
-
-<span class="tok-heading">## Problem</span>
-Users need to hand project data to finance, who lives in spreadsheets.
-
-<span class="tok-heading">## User</span>
-Project owners on the Pro plan.
-
-<span class="tok-heading">## Success looks like</span>
-- A "Download CSV" button on the project page
-- One row per task, columns: id, title, status, owner, due_date
-- Streams server-side; works for projects with 50k+ tasks
-
-<span class="tok-heading">## Edge cases</span>
-- Empty project → header-only CSV, not a 404
-- Non-ASCII titles → UTF-8 with BOM
-- Background-deleted tasks → excluded silently
-
-<span class="tok-heading">## Non-goals</span>
-- XLSX export
-- Re-import
-- Scheduled / recurring exports</code></pre>
-          </figure>
         </div>
       </section>
 
