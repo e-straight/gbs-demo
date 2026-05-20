@@ -641,12 +641,17 @@ button {
 .bullets--primer .slide__header {
   color: var(--accent-primer);
 }
+.primer-title {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.2vw, 16px);
+  flex-wrap: wrap;
+}
 .primer-logo {
-  width: clamp(40px, 4vw, 56px);
-  height: clamp(40px, 4vw, 56px);
-  color: var(--accent-primer);
-  display: block;
-  margin-bottom: clamp(8px, 0.8vw, 14px);
+  width: 1em;
+  height: 1em;
+  color: var(--fgColor-default);
+  flex-shrink: 0;
 }
 
 .primer-slide .slide__inner {
