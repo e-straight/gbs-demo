@@ -8,6 +8,14 @@
       name="description"
       content="Using Scaffolding to go from Idea to Prototype: Maximizing Model Output and Minimizing AI Slop."
     />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/github/mona-sans@main/fonts/webfonts/variable/MonaSansVF%5Bwdth,opsz,wght%5D.woff2"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -49,7 +57,7 @@
           </header>
           <div class="about-grid">
             <figure class="about-portrait">
-              <img src="assets/speaker.webp" alt="Speaker portrait" loading="eager" />
+              <img src="assets/speaker.webp" alt="Speaker portrait" width="600" height="600" loading="lazy" decoding="async" />
             </figure>
             <div class="about-bio">
               <p class="about-role">Member of the Technical Staff</p>
@@ -201,7 +209,7 @@
               </ul>
             </div>
             <figure class="primer-screenshot">
-              <img src="assets/repo-screenshot.webp" alt="Screenshot of this slide deck's GitHub repository" loading="lazy" />
+              <img src="assets/repo-screenshot.webp" alt="Screenshot of this slide deck's GitHub repository" width="1600" height="863" loading="lazy" decoding="async" />
             </figure>
           </div>
         </div>
@@ -274,11 +282,13 @@
               rel="noopener noreferrer"
               class="link-card"
             >
-              <div
+              <img
                 class="link-card__image"
-                style="background-image: url('https://cdn.prod.website-files.com/6889473510b50328dbb70ae6/68c469d23594abeb9ab6ee48_70ed020ecf8fa028b9bc95fa819720b6_og_claude-generic.jpg');"
-                aria-hidden="true"
-              ></div>
+                src="https://cdn.prod.website-files.com/6889473510b50328dbb70ae6/68c469d23594abeb9ab6ee48_70ed020ecf8fa028b9bc95fa819720b6_og_claude-generic.jpg"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
               <div class="link-card__body">
                 <p class="link-card__source">Anthropic · Claude Plugin</p>
                 <h3 class="link-card__title">Superpowers — Claude Plugin</h3>
@@ -295,11 +305,13 @@
               rel="noopener noreferrer"
               class="link-card"
             >
-              <div
+              <img
                 class="link-card__image"
-                style="background-image: url('https://github.blog/wp-content/uploads/2026/01/00ab37fbbb9bc343b007734b0e5805a26e747c90d955750bd976cb9ce84f6a2a-1920x1080-1.png');"
-                aria-hidden="true"
-              ></div>
+                src="https://github.blog/wp-content/uploads/2026/01/00ab37fbbb9bc343b007734b0e5805a26e747c90d955750bd976cb9ce84f6a2a-1920x1080-1.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
               <div class="link-card__body">
                 <p class="link-card__source">The GitHub Blog · Copilot</p>
                 <h3 class="link-card__title">
@@ -459,11 +471,13 @@ dist/</code></pre>
               rel="noopener noreferrer"
               class="link-card"
             >
-              <div
+              <img
                 class="link-card__image"
-                style="background-image: url('https://res.cloudinary.com/snyk/image/upload/v1646599410/wordpress-sync/blog-feature-security-alert-purple.jpg');"
-                aria-hidden="true"
-              ></div>
+                src="https://res.cloudinary.com/snyk/image/upload/v1646599410/wordpress-sync/blog-feature-security-alert-purple.jpg"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
               <div class="link-card__body">
                 <p class="link-card__source">Snyk · Blog</p>
                 <h3 class="link-card__title">
@@ -482,11 +496,13 @@ dist/</code></pre>
               rel="noopener noreferrer"
               class="link-card"
             >
-              <div
+              <img
                 class="link-card__image"
-                style="background-image: url('https://images.ctfassets.net/hjgychtc108g/7DjSnSWeGLxU1cL5MmavJY/f16cf2f7c52eea9be84fa25d7fb6faac/image.png');"
-                aria-hidden="true"
-              ></div>
+                src="https://images.ctfassets.net/hjgychtc108g/7DjSnSWeGLxU1cL5MmavJY/f16cf2f7c52eea9be84fa25d7fb6faac/image.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
               <div class="link-card__body">
                 <p class="link-card__source">Vercel · Knowledge base</p>
                 <h3 class="link-card__title">
@@ -509,7 +525,10 @@ dist/</code></pre>
             <img
               src="assets/yolo-meme.webp"
               alt="vx-underground meme on the consequences of YOLO mode"
-              loading="eager"
+              width="1100"
+              height="918"
+              loading="lazy"
+              decoding="async"
             />
             <span class="meme-card__credit">@vxunderground</span>
           </div>
@@ -645,9 +664,12 @@ dist/</code></pre>
           >
             <div class="video-card__thumb">
               <img
-                src="https://i.ytimg.com/vi/mJ2GZRV63TE/maxresdefault.jpg"
+                src="https://i.ytimg.com/vi/mJ2GZRV63TE/hqdefault.jpg"
                 alt="Thumbnail for 'Garry's List Audited' on YouTube"
+                width="480"
+                height="360"
                 loading="lazy"
+                decoding="async"
               />
               <span class="video-card__play" aria-hidden="true">
                 <svg viewBox="0 0 68 48" width="68" height="48" focusable="false">

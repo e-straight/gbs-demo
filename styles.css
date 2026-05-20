@@ -963,10 +963,13 @@ button {
 
 .link-card__image {
   aspect-ratio: 16 / 9;
-  background-size: cover;
-  background-position: center;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
   background-color: var(--bgColor-inset);
   border-bottom: 1px solid var(--borderColor-default);
+  display: block;
 }
 
 .link-card__body {
