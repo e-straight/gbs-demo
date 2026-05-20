@@ -192,19 +192,19 @@
                 </li>
                 <li>
                   <strong>Branch &amp; main.</strong>
-                  A branch is a safe copy to try things on. <code>main</code> is the official version users see.
+                  A branch is a working copy where you make changes in isolation. <code>main</code> is the source of truth — the version users actually see.
                 </li>
                 <li>
                   <strong>Commit.</strong>
-                  A labeled save point. You can always rewind to one.
+                  A recorded change paired with a short note. Builds an audit trail you can review or roll back to.
                 </li>
                 <li>
                   <strong>Pull Request (PR).</strong>
-                  "Hey team, can we add my changes to main?" — a place to review, discuss, and approve.
+                  A formal proposal to merge changes into <code>main</code>. Reviewed and approved by the team before anything goes in.
                 </li>
                 <li>
                   <strong>CI/CD.</strong>
-                  A robot that runs your tests and ships your code automatically when a PR is approved.
+                  Continuous Integration / Continuous Delivery — the automated pipeline that tests every change and deploys approved code to users.
                 </li>
               </ul>
             </div>
@@ -228,8 +228,8 @@
               Define the problem, the user, and the core value before a single line of code.
             </li>
             <li>
-              <strong>Break the product into shippable features.</strong>
-              Each one is a self-contained unit with a clear definition of done.
+              <strong>Break the product into small features you can release one at a time.</strong>
+              Each one has a clear goal and a clear finish line.
             </li>
             <li>
               <strong>Write the spec before the code.</strong>
@@ -260,8 +260,8 @@
               Tests are how you sleep at night when you ship on Fridays.
             </li>
             <li>
-              <strong>Main is only reached through CI/CD.</strong>
-              Automated checks gate every deployment — no exceptions, including for you.
+              <strong>Code only reaches main through CI/CD.</strong>
+              Every change passes automated checks before it ships — no exceptions, including for you.
             </li>
           </ul>
         </div>
@@ -293,7 +293,7 @@
                 <p class="link-card__source">Anthropic · Claude Plugin</p>
                 <h3 class="link-card__title">Superpowers — Claude Plugin</h3>
                 <p class="link-card__desc">
-                  Teaches Claude brainstorming, sub-agent development with code review, debugging, TDD, and skill authoring. Installable scaffolding for the model itself.
+                  A plugin that teaches Claude how to plan, review its own code, debug, write tests, and build new skills — a starter kit for disciplined AI coding.
                 </p>
                 <span class="link-card__url">claude.com/plugins/superpowers ↗</span>
               </div>
@@ -318,7 +318,7 @@
                   GitHub Copilot CLI combines model families for a second opinion
                 </h3>
                 <p class="link-card__desc">
-                  Rubber Duck brings a different perspective to GitHub Copilot CLI — a second model in the loop to challenge assumptions and catch design flaws before they ship.
+                  Adds a second AI model to challenge your first model's plan — catching bad assumptions and design mistakes before code ships.
                 </p>
                 <span class="link-card__url">github.blog ↗</span>
               </div>
@@ -345,20 +345,20 @@
           </header>
           <ul class="bullets">
             <li>
-              <strong>Store secrets in <code>.env</code> + env vars.</strong>
-              Never hardcode API keys, database URLs, or credentials in source code.
+              <strong>Keep secrets out of your code.</strong>
+              API keys, database passwords, anything sensitive — store them in a separate config file the app loads at runtime.
             </li>
             <li>
-              <strong>Add <code>.env</code> to <code>.gitignore</code> before the first commit.</strong>
-              Treat any exposed secret as compromised — rotate immediately.
+              <strong>Tell Git to ignore the secrets file before your first commit.</strong>
+              If a key ever leaks into history, treat it as compromised and rotate it the same day.
             </li>
             <li>
-              <strong>Never store plaintext passwords.</strong>
-              Use bcrypt or argon2, or delegate auth to Clerk, Supabase Auth, or Auth0.
+              <strong>Never save passwords as plain text.</strong>
+              Hash them with a one-way function (bcrypt or argon2), or delegate login entirely to a provider like Clerk or Auth0.
             </li>
             <li>
-              <strong>Sanitize user input before it touches a prompt.</strong>
-              Prompt injection is the new XSS — treat untrusted text like untrusted text.
+              <strong>Don't paste user input straight into a prompt.</strong>
+              Attackers can hide instructions inside it — called "prompt injection." Validate and clean it first.
             </li>
           </ul>
         </div>
@@ -373,12 +373,12 @@
           </header>
           <ul class="bullets">
             <li>
-              <strong>Return only what the frontend needs.</strong>
-              Never expose hashed passwords, internal IDs, or sensitive fields in API responses.
+              <strong>Only send the data your app actually needs.</strong>
+              Hide passwords, internal IDs, and sensitive fields from every API response.
             </li>
             <li>
-              <strong>Validate inputs on the server.</strong>
-              Client-side validation is UX — it is not security.
+              <strong>Always re-check user input on the server.</strong>
+              The form check in the browser is a nicety, not a defense — anyone can bypass it.
             </li>
             <li>
               <strong>Every route checks authn <em>and</em> authz.</strong>
@@ -553,20 +553,24 @@ dist/</code></pre>
           </figure>
           <ul class="checklist">
             <li>
-              <strong>Run it sandboxed.</strong>
-              Disposable container, ephemeral VM, branch worktree — anything you can throw away when it goes sideways.
+              <strong>Run it in a throwaway environment.</strong>
+              A disposable container, scratch VM, or isolated folder — somewhere you can blow up without losing real work.
             </li>
             <li>
-              <strong>Keep production credentials out of scope.</strong>
-              No prod database URL, no live API keys, no long-lived tokens in the environment.
+              <strong>Keep production credentials away from it.</strong>
+              No live database, no real API keys, no long-lived access tokens in the environment.
             </li>
             <li>
-              <strong>Don't let it install random packages.</strong>
-              Pin dependencies, audit lockfiles, and prefer an isolated package cache.
+              <strong>Don't let it install random code.</strong>
+              Lock down the list of dependencies and review anything new before it runs.
             </li>
             <li>
-              <strong>Don't let it drop tables.</strong>
-              No <code>DROP</code>, no <code>TRUNCATE</code>, no <code>rm -rf</code> — keep destructive commands behind a human checkpoint.
+              <strong>Pin dependencies to specific versions.</strong>
+              "Latest" is how a compromised package update becomes your security incident overnight.
+            </li>
+            <li>
+              <strong>Don't let it delete things you can't recover.</strong>
+              Block destructive commands (wiping tables, wiping files) behind a human check.
             </li>
           </ul>
         </div>
