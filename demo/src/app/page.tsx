@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -8,6 +9,9 @@ export default function Home() {
         <p className={styles.subtitle}>
           A starting point. Build the feature here.
         </p>
+        <Link href="/friend-form" className={styles.cta}>
+          Hype a friend →
+        </Link>
       </section>
     </main>
   );
