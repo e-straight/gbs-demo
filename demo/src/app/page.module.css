@@ -25,4 +25,20 @@
 .subtitle {
   font-size: 1.125rem;
   opacity: 0.7;
+  margin-bottom: 1.75rem;
+}
+
+.cta {
+  display: inline-block;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform 0.1s ease;
+}
+
+.cta:hover {
+  transform: translateY(-1px);
 }

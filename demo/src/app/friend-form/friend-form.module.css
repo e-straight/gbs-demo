@@ -1,0 +1,204 @@
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  opacity: 0.75;
+  font-size: 1.05rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.intro {
+  opacity: 0.75;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border: none;
+  padding: 0;
+}
+
+.field label,
+.field legend {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.hint {
+  font-size: 0.85rem;
+  opacity: 0.65;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field select,
+.field textarea {
+  font: inherit;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid color-mix(in oklab, currentColor 18%, transparent);
+  background: color-mix(in oklab, var(--background) 88%, transparent);
+  color: inherit;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 5rem;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px color-mix(in oklab, #6366f1 25%, transparent);
+}
+
+.field [aria-invalid="true"] {
+  border-color: #ef4444;
+}
+
+.threeWords {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.threeWordsItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+@media (max-width: 480px) {
+  .threeWords {
+    grid-template-columns: 1fr;
+  }
+}
+
+.radioGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.5rem;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid color-mix(in oklab, currentColor 18%, transparent);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.radio:has(input:checked) {
+  border-color: #6366f1;
+  background: color-mix(in oklab, #6366f1 12%, transparent);
+}
+
+.error {
+  color: #ef4444;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.formError {
+  color: #ef4444;
+  font-size: 0.9rem;
+  min-height: 1.2em;
+  margin: 0;
+}
+
+.submit {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.85rem 1.2rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.15s ease;
+}
+
+.submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.thanksActions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.secondaryLink {
+  display: inline-block;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, currentColor 25%, transparent);
+  font-weight: 500;
+}
+
+.secondaryLink:hover {
+  border-color: #6366f1;
+}
