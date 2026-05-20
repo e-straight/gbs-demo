@@ -1,5 +1,9 @@
 name: demo CI
 
+# CI for the demo/ Next.js app. Runs on every push to main and on PRs that
+# touch demo/ or this workflow. Each step below has a "what & why" description
+# that shows up in the Actions UI and in the job summary card.
+
 on:
   push:
     branches: [main]
@@ -12,6 +16,8 @@ on:
       - ".github/workflows/demo-ci.yml"
 
 concurrency:
+  # Cancel older runs on the same branch so PRs only ever spend CI minutes
+  # on the latest commit.
   group: demo-ci-${{ github.ref }}
   cancel-in-progress: true
 
@@ -25,25 +31,62 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        # Pulls the repo so the runner can see demo/ and the lockfile.
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Set up Node.js 20 (with npm cache)
+        # Pins Node 20 LTS and restores ~/.npm from cache keyed on the
+        # lockfile so subsequent runs install dependencies in seconds.
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
           cache-dependency-path: demo/package-lock.json
 
+      - name: Job summary — what this run does
+        # Writes a markdown card to the run page (top of the Actions UI)
+        # explaining each gate. Visible at github.com/.../actions/runs/<id>.
+        run: |
+          cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
+          ## demo CI — what each step does
+
+          This workflow guards the `demo/` Next.js app. Every gate must pass
+          before a deploy to Vercel is considered healthy.
+
+          | Step | What it does | Why it matters |
+          |---|---|---|
+          | **Install dependencies** | `npm ci` from `demo/package-lock.json` | Reproducible, lockfile-exact installs. Fails fast if the lockfile drifts. |
+          | **Lint** | `eslint` via `eslint-config-next` | Catches common bugs, unused code, and Next.js anti-patterns (e.g. missing `key` props, bad `Image` usage). |
+          | **Typecheck** | `tsc --noEmit` | Catches type errors that `next build` can sometimes skip in dev mode. |
+          | **Test** | `vitest run` | Runs unit / component tests under `src/**/*.{test,spec}.{ts,tsx}` in a jsdom environment. |
+          | **Build** | `next build` | Verifies the app compiles and renders cleanly for production — the same command Vercel will run on deploy. |
+          EOF
+
       - name: Install dependencies
+        # `npm ci` does a clean, lockfile-exact install. Fails the build
+        # immediately if package.json and package-lock.json disagree, which
+        # is what we want from CI (no surprise version drift).
         run: npm ci --no-audit --no-fund
 
-      - name: Lint
+      - name: Lint (eslint-config-next)
+        # Static analysis. Enforces the Next.js recommended rules plus the
+        # TypeScript rules from `eslint-config-next/typescript`. Fast: <2s.
         run: npm run lint
 
-      - name: Typecheck
+      - name: Typecheck (tsc --noEmit)
+        # Full TypeScript type check across src/. `next build` does its own
+        # type checking, but running tsc explicitly surfaces type errors
+        # before we spend time on tests or a full prod build.
         run: npm run typecheck
 
-      - name: Test
+      - name: Unit tests (vitest run)
+        # Runs the test suite once (no watch). Tests live next to the code
+        # they cover, e.g. src/app/page.test.tsx. jsdom + Testing Library.
         run: npm test
 
-      - name: Build
+      - name: Production build (next build)
+        # The final gate. Compiles the app exactly the way Vercel will, so a
+        # green CI run means the deploy is very likely to succeed.
         run: npm run build
+
