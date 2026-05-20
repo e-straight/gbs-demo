@@ -618,32 +618,34 @@ dist/</code></pre>
         <div class="slide__inner">
           <header class="slide__header">
             <p class="kicker">03 · Scalable · in practice</p>
-            <h2>Versioned routes, consistent envelopes</h2>
+            <h2>APIs that grow without breaking</h2>
+            <p class="lede">
+              Your backend talks to phones, browsers, and other apps through an <strong>API</strong>. Two small habits keep it from breaking when you change things.
+            </p>
           </header>
           <div class="code-grid">
             <figure class="code-block">
-              <figcaption><span class="code-block__dot"></span>routes</figcaption>
-<pre><code><span class="tok-comment">// v1 stays stable; new shapes ship under v2</span>
+              <figcaption><span class="code-block__dot"></span>1 · version your URLs</figcaption>
+<pre><code><span class="tok-comment">// v1 keeps working — old apps don't break</span>
 <span class="tok-key">GET</span>  /api/v1/projects
 <span class="tok-key">POST</span> /api/v1/projects
 <span class="tok-key">GET</span>  /api/v1/projects/:id
-<span class="tok-key">GET</span>  /api/v2/projects   <span class="tok-comment">// breaking change lives here</span></code></pre>
+
+<span class="tok-comment">// big changes? ship them under v2,</span>
+<span class="tok-comment">// clients upgrade when they're ready.</span>
+<span class="tok-key">GET</span>  /api/v2/projects</code></pre>
             </figure>
             <figure class="code-block">
-              <figcaption><span class="code-block__dot"></span>response envelope</figcaption>
+              <figcaption><span class="code-block__dot"></span>2 · same shape, every time</figcaption>
 <pre><code>{
-  <span class="tok-key">"data"</span>: { <span class="tok-key">"id"</span>: <span class="tok-str">"prj_42"</span>, <span class="tok-key">"name"</span>: <span class="tok-str">"Demo"</span> },
-  <span class="tok-key">"meta"</span>: {
-    <span class="tok-key">"page"</span>: <span class="tok-num">1</span>,
-    <span class="tok-key">"per_page"</span>: <span class="tok-num">25</span>,
-    <span class="tok-key">"total"</span>: <span class="tok-num">137</span>
-  },
-  <span class="tok-key">"error"</span>: <span class="tok-num">null</span>
+  <span class="tok-key">"data"</span>:  { <span class="tok-key">"id"</span>: <span class="tok-str">"prj_42"</span>, <span class="tok-key">"name"</span>: <span class="tok-str">"Demo"</span> },  <span class="tok-comment">// the answer</span>
+  <span class="tok-key">"meta"</span>:  { <span class="tok-key">"page"</span>: <span class="tok-num">1</span>, <span class="tok-key">"total"</span>: <span class="tok-num">137</span> },     <span class="tok-comment">// extra info</span>
+  <span class="tok-key">"error"</span>: <span class="tok-num">null</span>                              <span class="tok-comment">// problems, if any</span>
 }</code></pre>
             </figure>
           </div>
           <p class="footnote">
-            Every response, every endpoint — <code>{ data, meta, error }</code>. Clients never have to guess.
+            Same wrapper on every response means clients never have to guess where to look.
           </p>
         </div>
       </section>
