@@ -263,6 +263,10 @@
               <strong>Code only reaches main through CI/CD.</strong>
               Every change passes automated checks before it ships — no exceptions, including for you.
             </li>
+            <li>
+              <strong>Give every agent its own worktree.</strong>
+              <code>git worktree add</code> gives each agent an isolated working directory off the same repo — parallel work with no branch, index, or staged-change collisions.
+            </li>
           </ul>
         </div>
       </section>
@@ -702,6 +706,14 @@ dist/</code></pre>
           <p class="demo__prompt"><span class="demo__sigil">$</span> live-demo<span class="demo__cursor" aria-hidden="true"></span></p>
           <h2 class="demo__title">Live Demo</h2>
           <p class="demo__sub">Let's build something.</p>
+          <a
+            class="demo__link"
+            href="https://gbs-demo-teal.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            gbs-demo-teal.vercel.app ↗
+          </a>
         </div>
       </section>
     </main>
