@@ -46,6 +46,8 @@
   --accent-scalable-soft: #271052;
   --accent-structured: #f778ba; /* sponsors pink */
   --accent-structured-soft: #4d0f3b;
+  --accent-primer: #58a6ff;     /* open blue */
+  --accent-primer-soft: #0c2d6b;
 
   /* layout */
   --slide-w: 1280px;
@@ -617,10 +619,14 @@ button {
 .bullets--structured li {
   color: var(--accent-structured);
 }
+.bullets--primer li {
+  color: var(--accent-primer);
+}
 
 .bullets--secure .kicker,
 .bullets--scalable .kicker,
-.bullets--structured .kicker {
+.bullets--structured .kicker,
+.bullets--primer .kicker {
   color: currentColor;
 }
 .bullets--secure .slide__header {
@@ -632,9 +638,20 @@ button {
 .bullets--structured .slide__header {
   color: var(--accent-structured);
 }
+.bullets--primer .slide__header {
+  color: var(--accent-primer);
+}
+.primer-logo {
+  width: clamp(40px, 4vw, 56px);
+  height: clamp(40px, 4vw, 56px);
+  color: var(--accent-primer);
+  display: block;
+  margin-bottom: clamp(8px, 0.8vw, 14px);
+}
 .bullets--secure .slide__header h2,
 .bullets--scalable .slide__header h2,
-.bullets--structured .slide__header h2 {
+.bullets--structured .slide__header h2,
+.bullets--primer .slide__header h2 {
   color: var(--fgColor-default);
 }
 
